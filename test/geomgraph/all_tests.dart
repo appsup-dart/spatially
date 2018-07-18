@@ -1,6 +1,6 @@
 library spatially.geomgraph.all_tests;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 import 'geometry_graph/all_tests.dart' as geometry_graph;
 import 'intersection_info_test.dart' as intersection_info;

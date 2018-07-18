@@ -1,6 +1,6 @@
 library spatially.base.all_tests;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 import 'iterables/all_tests.dart' as iterables;
 import 'coordinate_test.dart' as coordinate;

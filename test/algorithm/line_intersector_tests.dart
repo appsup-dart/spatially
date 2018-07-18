@@ -1,5 +1,5 @@
 library spatially.algorithm.line_intersector_tests;
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/base/coordinate.dart';
 import 'package:spatially/base/line_segment.dart';
 import 'package:spatially/algorithm/line_intersector.dart';

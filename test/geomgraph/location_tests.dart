@@ -1,6 +1,6 @@
 library spatially.geomgraph.location_tests;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:quiver/core.dart';
 import 'package:spatially/geomgraph/location.dart';
 import 'package:spatially/geom/base.dart';

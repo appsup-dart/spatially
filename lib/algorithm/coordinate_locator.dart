@@ -55,7 +55,7 @@ int locateCoordinateIn(Coordinate c, Geometry geom,
     GeometryList geomList = geom as GeometryList;
     bool isIn = false;
     int boundaryCount = 0;
-    for (var g in geom) {
+    for (var g in geomList) {
       int componentLocation = locateCoordinateIn(c, g);
       if (componentLocation == loc.INTERIOR) isIn = true;
       if (componentLocation == loc.BOUNDARY) boundaryCount++;

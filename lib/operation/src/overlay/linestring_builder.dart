@@ -22,7 +22,7 @@ class _LinestringBuilder extends _OverlayBuilder {
   Geometry build() {
 
     for (var edge in graph.edges.toList(growable:false)) {
-      var onLocations = edge.locations.map((l) => l.on);
+      var onLocations = edge.locations.map<int>((l) => l.on);
       if (!_inOverlay(onLocations)) {
         graph.removeEdge(edge);
       }
@@ -35,10 +35,6 @@ class _LinestringBuilder extends _OverlayBuilder {
     while (!graph.edges.isEmpty) {
       var edge = graph.edges.first;
       lstrs.add(_buildLinestring(edge));
-    }
-
-    for (var node in graph.nodes) {
-      print(node);
     }
 
     switch (lstrs.length) {
@@ -92,9 +88,10 @@ class _LinestringBuilder extends _OverlayBuilder {
     Edge prevEdge, edgeAfter;
     for (Edge e in node.terminatingEdges) {
       if (e == edge) {
-        if (prevEdge == null)
+        if (prevEdge == null) {
           edgeAfter = node.terminatingEdges.last;
           break;
+        }
         edgeAfter = prevEdge;
       }
       prevEdge = e;

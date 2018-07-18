@@ -2,4 +2,7 @@
 pubspec.lock
 packages/*
 test/sandbox.dart
-
+spatially.iml
+.pub
+.packages
+.dart_tool

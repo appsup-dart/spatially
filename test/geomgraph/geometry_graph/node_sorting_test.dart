@@ -1,6 +1,6 @@
 library spatially.geomgraph.geometry_graph.node_sorting;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/spatially.dart';
 import 'package:spatially/geomgraph/geometry_graph.dart';
 

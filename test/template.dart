@@ -1,5 +1,5 @@
 library test_lib;
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/geom/base.dart';
 
 void main() {

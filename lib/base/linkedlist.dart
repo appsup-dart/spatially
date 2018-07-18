@@ -88,19 +88,19 @@ class ListNode<T> {
   String toString() => "ListNode($value)";
 }
 
-class _ListSentinel implements ListNode {
+class _ListSentinel<T> implements ListNode<T> {
   bool _removed = false;
-  Object value = null;
+  T value = null;
 
-  LinkedList _list;
-  ListNode _prev;
-  ListNode _next;
-  _ListSentinel(LinkedList this._list);
+  LinkedList<T> _list;
+  ListNode<T> _prev;
+  ListNode<T> _next;
+  _ListSentinel(LinkedList<T> this._list);
 
-  LinkedList get list => _list;
+  LinkedList<T> get list => _list;
 
-  ListNode get prev => _prev;
-  ListNode get next => _next;
+  ListNode<T> get prev => _prev;
+  ListNode<T> get next => _next;
 
   bool get isLast => _next is _ListSentinel;
   bool get isFirst => _prev is _ListSentinel;
@@ -141,7 +141,7 @@ class LinkedList<T> extends IterableBase<T> {
   }
 
   factory LinkedList.from(Iterable<T> iterable) {
-    LinkedList li = new LinkedList();
+    LinkedList li = new LinkedList<T>();
     li.addAll(iterable);
     return li;
   }

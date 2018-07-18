@@ -1,5 +1,5 @@
 library spatially.geom.interior_point_tests.dart;
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/geom/base.dart';
 
 void main() {
@@ -17,9 +17,10 @@ void testInteriorPoint() {
       });
       test("non-empty point", () {
         var p = geomFactory.fromWkt("POINT(10 10)");
+        expect(p.interiorPoint, equals(p));
       });
     });
-    group("multipoint", () {
+    group("multipoint: ", () {
       test("non-empty", () {
         var mp = geomFactory.fromWkt(
             "MULTIPOINT ((60 300), (200 200), (240 240), "

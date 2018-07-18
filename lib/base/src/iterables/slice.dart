@@ -16,7 +16,7 @@
 
 part of spatially.base.iterables;
 
-Iterable slice(Iterable iterable, int start_or_stop, [int stop, int step=1]) {
+Iterable<T> slice<T>(Iterable<T> iterable, int start_or_stop, [int stop, int step=1]) {
   if (step <= 0)
     throw new ArgumentError("Step for slice must be a positive integer");
   var start;

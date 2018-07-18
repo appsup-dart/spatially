@@ -21,7 +21,7 @@ class _PolygonBuilder extends _OverlayBuilder {
 
   Geometry build() {
     for (var edge in graph.edges.toList(growable:false)) {
-      var onLocations = edge.locations.map((l) => l.on);
+      var onLocations = edge.locations.map<int>((l) => l.on);
       if (!_inOverlay(onLocations)) {
         graph.removeEdge(edge);
       }

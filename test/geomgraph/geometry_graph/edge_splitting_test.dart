@@ -1,6 +1,6 @@
 library spatially.geomgraph.geometry_graph.edge_splitting_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/spatially.dart';
 import 'package:spatially/geomgraph/geometry_graph.dart';
 import 'package:spatially/geomgraph/intersector.dart';

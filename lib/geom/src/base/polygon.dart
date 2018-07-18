@@ -106,7 +106,7 @@ class Polygon extends Geometry {
 
       final ringCoords = r._coords;
       //Drop the endpoint
-      final uniqCoords = new List.from(ringCoords.getRange(0, ringCoords.length - 1));
+      final uniqCoords = new List<Coordinate>.from(ringCoords.getRange(0, ringCoords.length - 1));
       final minCoord = minCoordinate(ringCoords);
       //The minimum coordinate should be the first element of the normalized ring
       scrollCoordinates(ringCoords, minCoord);
@@ -116,7 +116,7 @@ class Polygon extends Geometry {
       ringCoords[ringCoords.length - 1] = ringCoords[0];
 
       if (cg_algorithms.isCounterClockwise(ringCoords)) {
-        ringCoords.reverse();
+        ringCoords.reversed;
       }
     }
     normalizeRing(_shell, true);

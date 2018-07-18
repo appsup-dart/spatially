@@ -128,7 +128,7 @@ int directionOfIncrease(List<Coordinate> coords) {
   for (int i=0;i<coords.length / 2; i++) {
     var j = coords[coords.length - 1 - i];
     // skip equal on both ends
-    var cmp = coords[i].compareTo(coords[j]);
+    var cmp = coords[i].compareTo(j);
     if (cmp != 0) return cmp;
   }
   //palindromic arrays are positive

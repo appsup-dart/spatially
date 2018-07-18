@@ -27,14 +27,14 @@ class Tuple<T1,T2> {
 
   Tuple(T1 this.$1, T2 this.$2);
 
-  Tuple transform(dynamic f1(T1 item), dynamic f2(T2 item)) =>
+  Tuple<S1,S2> transform<S1,S2>(S1 f1(T1 item), S2 f2(T2 item)) =>
       new Tuple(f1($1), f2($2));
 
   /**
    * Maps the function `f` across both items of the tuple.
    * The function should accept values from both `T1` and `T2`.
    */
-  dynamic map(dynamic f(var item)) => transform(f,f);
+  Tuple<S,S> map<S>(S f(var /*T1|T2*/ item)) => transform(f,f);
 
   /**
    * [:test:] returns `true` for either item in the tuple.
@@ -69,11 +69,11 @@ class Tuple<T1,T2> {
   String toString() => "<${this.$1}, ${this.$2}>";
 }
 
-Iterable<Tuple> zip(Iterable iter1, Iterable iter2) {
+Iterable<Tuple<T1,T2>> zip<T1,T2>(Iterable<T1> iter1, Iterable<T2> iter2) {
   return new _Zip(iter1, iter2);
 }
 
-Iterable zipWith(Iterable iter1, Iterable iter2, dynamic f(var elem1, var elem2)) =>
+Iterable<R> zipWith<T1,T2,R>(Iterable<T1> iter1, Iterable<T2> iter2, R f(T1 elem1, T2 elem2)) =>
     new _ZipWith(iter1, iter2, f);
 
 class _Zip<T1,T2>

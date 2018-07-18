@@ -1,6 +1,6 @@
 library spatially.algorithm.all_tests;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'cg_algorithm_test.dart' as cg_algorithm;
 import 'line_intersector_tests.dart' as line_intersector;
 import 'coordinate_locator_test.dart' as coordinate_locator;

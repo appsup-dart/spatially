@@ -17,7 +17,7 @@
 part of spatially.base.graph;
 
 abstract class GraphEdge<E extends GraphEdgeLabel> {
-  final Graph<dynamic,E> graph;
+  final Graph<GraphNodeLabel,E> graph;
   final E label;
   final GraphNode startNode;
   final GraphNode endNode;
@@ -41,14 +41,13 @@ abstract class GraphEdge<E extends GraphEdgeLabel> {
    *
    * In order to replace the edge by the returned copy, call `replace` on the result.
    */
-  DirectedEdge asDirectedEdge({bool asForward});
+  DirectedEdge<E> asDirectedEdge({bool asForward});
 }
 
-class UndirectedEdge<E extends GraphEdgeLabel<E>>
-extends GraphEdge<E> {
+class UndirectedEdge<E extends GraphEdgeLabel> extends GraphEdge<E> {
 
-  UndirectedEdge._(Graph<dynamic,E> graph,
-                   GraphEdgeLabel<E> label,
+  UndirectedEdge._(Graph<GraphNodeLabel,E> graph,
+                   GraphEdgeLabel label,
                    GraphNode startNode,
                    GraphNode endNode) : super(graph, label, startNode, endNode);
 
@@ -90,11 +89,10 @@ extends GraphEdge<E> {
 
 }
 
-class DirectedEdge<E extends GraphEdgeLabel<E>>
-extends GraphEdge<E> {
+class DirectedEdge<E extends GraphEdgeLabel> extends GraphEdge<E> {
 
-  DirectedEdge._(Graph<dynamic,E> graph,
-                 GraphEdgeLabel<E> label,
+  DirectedEdge._(Graph<GraphNodeLabel,E> graph,
+                 GraphEdgeLabel label,
                  GraphNode startNode,
                  GraphNode endNode) : super(graph, label, startNode, endNode);
 

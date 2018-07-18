@@ -1,6 +1,6 @@
 library spatially.geom.factory_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/spatially.dart';
 
 main() {

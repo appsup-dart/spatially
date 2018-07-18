@@ -1,6 +1,6 @@
 library spatially.algorithm.cg_algorithm_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/spatially.dart';
 import 'package:spatially/algorithm/cg_algorithms.dart' as cg_algorithm;
 import 'package:spatially/geom/location.dart' as loc;

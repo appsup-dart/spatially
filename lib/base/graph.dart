@@ -54,8 +54,8 @@ const UnorderedIterableEquality _setEq = const UnorderedIterableEquality();
  * which are appropriate to the domain.
  */
 class Graph<N extends GraphNodeLabel, E extends GraphEdgeLabel> {
-  final BiMap<GraphNodeLabel<N>,GraphNode<N>> _labelledNodes;
-  final BiMap<GraphEdgeLabel<E>, GraphEdge<E>> _labelledEdges;
+  final BiMap<N,GraphNode<N>> _labelledNodes;
+  final BiMap<E,GraphEdge<E>> _labelledEdges;
 
   /**
    * `true` if the edges have a natural ordering around a node.
@@ -81,7 +81,7 @@ class Graph<N extends GraphNodeLabel, E extends GraphEdgeLabel> {
    * Return any undirected edge which is labelled with either the label or the
    * reversed label, or any directed edge which matches the label
    */
-  GraphEdge<E> edgeByLabel(GraphEdgeLabel<E> label) {
+  GraphEdge<E> edgeByLabel(E label) {
     var samedir = _labelledEdges[label];
     if (samedir != null) return samedir;
     var oppdir = _labelledEdges[label.reversed];
@@ -89,14 +89,14 @@ class Graph<N extends GraphNodeLabel, E extends GraphEdgeLabel> {
       return oppdir;
   }
 
-  DirectedEdge<E> directedEdgeByLabel(GraphEdgeLabel<E> label) {
+  DirectedEdge<E> directedEdgeByLabel(E label) {
     var edge = _labelledEdges[label];
     if (edge is DirectedEdge<E>)
       return edge;
     return null;
   }
 
-  UndirectedEdge<E> undirectedEdgeByLabel(GraphEdgeLabel<E> label) {
+  UndirectedEdge<E> undirectedEdgeByLabel(E label) {
     var edge = edgeByLabel(label);
     if (edge is UndirectedEdge)
       return edge;
@@ -106,13 +106,13 @@ class Graph<N extends GraphNodeLabel, E extends GraphEdgeLabel> {
    * Returns the node with the given label, or `null` if no such node
    * exists in the graph.
    */
-  GraphNode<N> nodeByLabel(GraphNodeLabel<N> label) => _labelledNodes[label];
+  GraphNode<N> nodeByLabel(N label) => _labelledNodes[label];
 
   /**
    * If a node with the given label exists in the graph, returns the node.
    * Otherwise adds a node with the specified label into the graph.
    */
-  GraphNode<N> addNode(GraphNodeLabel<N> label) {
+  GraphNode<N> addNode(N label) {
     if (label == null) throw new ArgumentError("null label");
     //TODO (ovangle): BiMap incorrectly returns `null` from putIfAbsent
     //                Return the result when it's updated.
@@ -125,7 +125,7 @@ class Graph<N extends GraphNodeLabel, E extends GraphEdgeLabel> {
    * Removes the node labelled by the specified label.
    * It is an error to add a node with any connected edges.
    */
-  GraphNode<N> removeNode(GraphNodeLabel<N> label) {
+  GraphNode<N> removeNode(N label) {
     var node = _labelledNodes[label];
     if (node == null) return null;
     if (node.terminatingEdges.isNotEmpty) {
@@ -145,7 +145,7 @@ class Graph<N extends GraphNodeLabel, E extends GraphEdgeLabel> {
    * by merging the connection's label and the argument label will be created
    * and the connection will be replaced by a connection with the merged label.
    */
-  GraphEdge<E> addDirectedEdge(GraphEdgeLabel<E> label, GraphNode<N> start, GraphNode<N> end) {
+  GraphEdge<E> addDirectedEdge(E label, GraphNode<N> start, GraphNode<N> end) {
     if (label == null) throw new ArgumentError("null label");
     if (start == null) throw new ArgumentError("null start");
     if (end == null) throw new ArgumentError("null end");
@@ -172,7 +172,7 @@ class Graph<N extends GraphNodeLabel, E extends GraphEdgeLabel> {
    * Add an undirected edge to the graph between the given [:start:] and [:end:] nodes.
    *
    */
-  GraphEdge<E> addUndirectedEdge(GraphEdgeLabel<E> label, GraphNode<N> start, GraphNode<N> end) {
+  GraphEdge<E> addUndirectedEdge(E label, GraphNode<N> start, GraphNode<N> end) {
     if (label == null) throw new ArgumentError("null label");
     if (start == null) throw new ArgumentError("null start");
     if (end == null) throw new ArgumentError("null end");
@@ -196,7 +196,7 @@ class Graph<N extends GraphNodeLabel, E extends GraphEdgeLabel> {
     return _addEdge(edge);
   }
 
-  GraphEdgeLabel<E> _mergeLabel(GraphEdgeLabel<E> label, GraphNode<N> start, GraphNode<N> end) {
+  E _mergeLabel(E label, GraphNode<N> start, GraphNode<N> end) {
     var connection = start.connection(end);
     if (connection != null) {
       //We'll add the connection back in _addEdge, but with a different label.
@@ -223,7 +223,7 @@ class Graph<N extends GraphNodeLabel, E extends GraphEdgeLabel> {
    * Removes the [GraphEdge] labelled with [:label:] from the edge. Returns the removed edge, or `null`
    * if none was removed.
    */
-  GraphEdge<E> removeEdge(GraphEdgeLabel<E> label) {
+  GraphEdge<E> removeEdge(E label) {
     var edge = edgeByLabel(label);
     return edge != null ? _removeEdge(edge) : null;
   }
@@ -255,7 +255,7 @@ class Graph<N extends GraphNodeLabel, E extends GraphEdgeLabel> {
    * * The existing edge is directed and the end node of the existing edge is not
    *   equal to the end node of the replacement
    */
-  GraphEdge<E> replaceEdge(GraphEdgeLabel<E> label, GraphEdge<E> replacement) {
+  GraphEdge<E> replaceEdge(E label, GraphEdge<E> replacement) {
     var edge = edgeByLabel(label);
     if (edge != null) {
       if (edge.isDirected) {

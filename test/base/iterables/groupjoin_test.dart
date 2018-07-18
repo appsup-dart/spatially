@@ -1,6 +1,6 @@
 library spatially.base.iterables.join_tests;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:quiver/core.dart';
 import 'package:spatially/base/iterables.dart';
 

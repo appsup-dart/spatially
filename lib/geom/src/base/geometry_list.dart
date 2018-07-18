@@ -68,7 +68,7 @@ class GeometryList<T extends Geometry> extends Geometry with ListMixin<T> {
   double get topologicalArea =>
       fold(0.0, (a, g) => a + g.topologicalArea);
 
-  bool equalsExact(Geometry other, [double tolerance = 0.0]) {
+  bool equalsExact(covariant Geometry other, [double tolerance = 0.0]) {
     if (other is GeometryList) {
       if (length != other.length) return false;
       return range(length).every(
@@ -116,8 +116,8 @@ class GeometryList<T extends Geometry> extends Geometry with ListMixin<T> {
       set length(int value) {
         _geometries.length = value;
       }
-  Geometry operator [](int i) => _geometries[i];
-  void operator []=(int i, Geometry value) {
+  T operator [](int i) => _geometries[i];
+  void operator []=(int i, T value) {
    _geometries[i] = value;
   }
 

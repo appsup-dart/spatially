@@ -1,7 +1,7 @@
 library geomgraph.test_intersector;
 
 import 'package:collection/wrappers.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/base/coordinate.dart';
 import 'package:spatially/geom/base.dart';
 import 'package:spatially/geomgraph/intersector.dart';

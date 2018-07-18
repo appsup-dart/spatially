@@ -67,7 +67,7 @@ Set<IntersectionInfo> _intersectionsBetween(List<SweeplineEvent> events,
                                             int start,
                                             int end) {
   var mchain0 = insertEvent.mchain;
-  var intersections = new Set();
+  var intersections = new Set<IntersectionInfo>();
   for (var i in range(start, end)
                 .where((i) => events[i].evtType == SweeplineEvent.INSERT_EVT)) {
     var mchain1 = events[i].mchain;

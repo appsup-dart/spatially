@@ -1,6 +1,6 @@
 library spatially.geom.centroid_tests;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/geom/base.dart';
 
 void main() {

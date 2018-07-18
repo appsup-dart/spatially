@@ -1,6 +1,6 @@
 library test_geom;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 import 'package:spatially/geom/intersection_matrix.dart';
 import 'package:spatially/geom/dimension.dart' as dim;

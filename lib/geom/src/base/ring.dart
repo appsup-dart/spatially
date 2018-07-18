@@ -25,7 +25,7 @@ class Ring extends Linestring {
 
   bool get isClosed => isEmptyGeometry || super.isClosed;
 
-  Geometry get reversed {
+  Ring get reversed {
     return factory.createRing(_coords.reversed);
   }
 

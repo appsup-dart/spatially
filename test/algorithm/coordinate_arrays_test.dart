@@ -1,6 +1,6 @@
 library spatially.algorithm.coordinate_arrays_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/base/coordinate.dart';
 import 'package:spatially/algorithm/coordinate_arrays.dart';
 

@@ -25,7 +25,7 @@ abstract class _OverlayBuilder {
     } else if (g is Polygon || g is MultiPolygon) {
       return 3;
     } else if (g is GeometryList) {
-      return g.fold(1, (g1,g2) => math.max(_getDim(g1), _getDim(g2)));
+      return g.fold(1, (d,g) => math.max(d, _getDim(g)));
     }
     throw new GeometryError("Not a recognised geometry type");
   }
@@ -41,7 +41,7 @@ abstract class _OverlayBuilder {
 
   factory _OverlayBuilder(GeometryGraph graph,
                          int overlayType) {
-    var dims = graph.geometries.map(_getDim);
+    var dims = graph.geometries.map<int>((v)=>_getDim(v));
     var dim;
     switch(overlayType) {
       case OVERLAY_INTERSECTION:
@@ -64,6 +64,8 @@ abstract class _OverlayBuilder {
         return new _LinestringBuilder(graph, overlayType);
       case 3:
         return new _PolygonBuilder(graph, overlayType);
+      default:
+        throw new StateError("Should never happen");
     }
   }
 

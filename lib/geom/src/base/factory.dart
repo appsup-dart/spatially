@@ -44,44 +44,45 @@ class GeometryFactory {
   /**
    * Creates a full copy of the argument geometry
    */
-  Geometry clone(Geometry geom) {
+  T clone<T extends Geometry>(T geom) {
     if (geom is Point) {
       if (geom.isEmptyGeometry) {
-        return createEmptyPoint();
+        return createEmptyPoint() as T;
       }
-      return createPoint(geom.coordinate);
+      return createPoint(geom.coordinate) as T;
     }
     if (geom is Ring) {
       if (geom.isEmptyGeometry)
-        return createEmptyRing();
-      return createRing(geom.coordinates);
+        return createEmptyRing() as T;
+      return createRing(geom.coordinates) as T;
     }
     if (geom is Linestring) {
       if (geom.isEmptyGeometry) {
-        return createEmptyLinestring();
+        return createEmptyLinestring() as T;
       }
-      return createLinestring(geom.coordinates);
+      return createLinestring(geom.coordinates) as T;
     }
     if (geom is Polygon) {
       if (geom.isEmptyGeometry) {
-        return createEmptyPolygon();
+        return createEmptyPolygon() as T;
       }
       var extRing = clone(geom.exteriorRing);
       var intRings = geom.interiorRings.map(clone);
-      return createPolygon(extRing, intRings);
+      return createPolygon(extRing, intRings) as T;
     }
     if (geom is MultiPoint) {
-      return createMultiPoint(geom.map(clone));
+      return createMultiPoint(geom.map(clone)) as T;
     }
     if (geom is MultiLinestring) {
-      return createMultiLinestring(geom.map(clone));
+      return createMultiLinestring(geom.map(clone)) as T;
     }
     if (geom is MultiPolygon) {
-      return createMultiPolygon(geom.map(clone));
+      return createMultiPolygon(geom.map(clone)) as T;
     }
     if (geom is GeometryList) {
-      return createGeometryList(geom.map(clone));
+      return createGeometryList(geom.map(clone)) as T;
     }
+    throw new ArgumentError("Don't know how to clone $geom");
   }
 
 

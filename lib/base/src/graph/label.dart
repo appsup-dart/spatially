@@ -16,17 +16,16 @@
 
 part of spatially.base.graph;
 
-abstract class GraphLabel<T extends GraphLabel<T>> {}
+abstract class GraphLabel {}
 
-abstract class GraphEdgeLabel<E extends GraphEdgeLabel>
-extends GraphLabel<GraphEdgeLabel> {
+abstract class GraphEdgeLabel extends GraphLabel {
 
   /**
    * Represents an edge label of a directed edge which is travelling in
    * the reverse direction (from the [:endNode:] of the edge it is attached to
    * to the [:startNode:].
    */
-  GraphEdgeLabel<E> get reversed;
+  GraphEdgeLabel get reversed;
 
   /**
    * Merges two [GraphEdgeLabel]s together to form a new label.
@@ -37,7 +36,7 @@ extends GraphLabel<GraphEdgeLabel> {
    * provide a method of multiplexing edges. If the multiplicity of edges
    * is not important, then the method should return `this`.
    */
-  GraphEdgeLabel<E> merge(GraphEdgeLabel<E> label);
+  GraphEdgeLabel merge(covariant GraphEdgeLabel label);
 
   /**
    * Used to order the graph edges around the terminating node.
@@ -55,13 +54,12 @@ extends GraphLabel<GraphEdgeLabel> {
    * `-1` if `other` should appear before `this` in the [List] of the terminating
    * edges at the node.
    */
-  int compareOrientation(GraphNodeLabel node, GraphEdgeLabel other) {
+  int compareOrientation(covariant GraphNodeLabel node, covariant GraphEdgeLabel other) {
     throw new UnimplementedError("EdgeLabel.compareOrientation");
   }
 
 }
 
-abstract class GraphNodeLabel<N extends GraphNodeLabel>
-extends GraphLabel<GraphNodeLabel> {
+abstract class GraphNodeLabel extends GraphLabel {
 
 }

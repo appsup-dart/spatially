@@ -22,13 +22,13 @@ bool _interiorOrBoundary(int location) => location == loc.INTERIOR || location =
  * test whether a location is in the overlay intersection
  */
 bool _inIntersection(Tuple<int,int> onLocations) =>
-    onLocations.both(_interiorOrBoundary);
+    onLocations.both((v)=>_interiorOrBoundary(v));
 
 /**
  *test whether a location is in the overlay union
  */
 bool _inUnion(Tuple<int,int> onLocations) =>
-    onLocations.either(_interiorOrBoundary);
+    onLocations.either((v)=>_interiorOrBoundary(v));
 
 /**
  * test whether a tuple of locations is in the overlay difference.
@@ -42,7 +42,7 @@ bool _inDifference(Tuple<int,int> onLocations) =>
  * test whether a tuple of locations is in the overlay symmetric difference
  */
 bool _inSymmetricDifference(Tuple<int,int> onLocations) =>
-    onLocations.either(_interiorOrBoundary)
-      && !onLocations.both(_interiorOrBoundary);
+    onLocations.either((v)=>_interiorOrBoundary(v))
+      && !onLocations.both((v)=>_interiorOrBoundary(v));
 
 

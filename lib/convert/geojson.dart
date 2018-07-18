@@ -175,10 +175,11 @@ class GeoJsonDecoder extends Converter<String,Geometry> {
     if (geoms == null) {
       throw new FormatException("GeometryCollection object must have a 'geometries' entry");
     }
-    return  geomFactory.createGeometryList(json['geometries'].map(_decodeGeometry));
+    return  geomFactory.createGeometryList(
+        (json['geometries'] as List).map((v)=>_decodeGeometry(v)));
   }
 
-  _safeCoords(Map<String,dynamic> json) {
+  List _safeCoords(Map<String,dynamic> json) {
     var coords = json['coordinates'];
     if (coords == null)
       throw new FormatException("GeoJSON geometry must have entry for 'coordinates'");
@@ -196,32 +197,32 @@ class GeoJsonDecoder extends Converter<String,Geometry> {
     return geomFactory.createPolygon(rings.first, rings.skip(1));
   }
 
-  Iterable<Ring> _decodeRings(List<List<List<num>>> ringCoords) =>
+  Iterable<Ring> _decodeRings(List ringCoords) =>
       ringCoords
-      .map(_decodeCoordinateList)
+      .map((v)=>_decodeCoordinateList(v))
       .map(geomFactory.createRing);
 
   _decodeMultiPoint(Map<String,dynamic> json) =>
       geomFactory.createMultiPoint(_safeCoords(json)
-          .map(_decodeCoordinate)
+          .map((v)=>_decodeCoordinate(v))
           .map(geomFactory.createPoint));
 
   _decodeMultiLinestring(Map<String,dynamic> json) =>
       geomFactory.createMultiLinestring(
           _safeCoords(json)
-          .map(_decodeCoordinateList)
+          .map((v)=>_decodeCoordinateList(v))
           .map(geomFactory.createLinestring));
 
   _decodeMultiPolygon(Map<String,dynamic> json) =>
       geomFactory.createMultiPolygon(
           _safeCoords(json)
-          .map(_decodeRings)
+          .map((v)=>_decodeRings(v))
           .map((rings) => geomFactory.createPolygon(rings.first, rings.skip(1))));
 
-  Iterable<Coordinate> _decodeCoordinateList(List<List<num>> positionList) =>
-      positionList.map(_decodeCoordinate);
+  Iterable<Coordinate> _decodeCoordinateList(List positionList) =>
+      positionList.map((v)=>_decodeCoordinate(v));
 
-  Coordinate _decodeCoordinate(List<num> position) {
+  Coordinate _decodeCoordinate(List position) {
     switch(position.length) {
       case 0:
       case 1:

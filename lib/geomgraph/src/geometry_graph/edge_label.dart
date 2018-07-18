@@ -16,7 +16,7 @@
 
 part of spatially.geomgraph.geometry_graph;
 
-class Edge implements GraphEdgeLabel<Edge> {
+class Edge implements GraphEdgeLabel {
   final GeometryGraph graph;
 
   /**
@@ -32,7 +32,7 @@ class Edge implements GraphEdgeLabel<Edge> {
 
   final Tuple<Location,Location> locations;
 
-  UnmodifiableListView<Coordinate> get coordinates =>
+  List<Coordinate> get coordinates =>
       new UnmodifiableListView(_coordinates);
 
   Edge._(GeometryGraph this.graph,
@@ -195,7 +195,7 @@ class Edge implements GraphEdgeLabel<Edge> {
      * to create another split covering the portion of the line
      * which intersects
      */
-    Iterable<Coordinate> coordsAt(IntersectionInfo info) {
+    List<Coordinate> coordsAt(IntersectionInfo info) {
       if (info.isLineIntersection) {
         var i = 0;
         //Advance the pointer to the start of the next segment over any coordinates
@@ -229,7 +229,7 @@ class Edge implements GraphEdgeLabel<Edge> {
 
     if (remainingCoords.isEmpty)
       return splitCoords;
-    var lastSplit = [];
+    var lastSplit = <Coordinate>[];
     if (nextStartCoord != remainingCoords.first) {
       lastSplit.add(nextStartCoord);
     }

@@ -32,7 +32,7 @@ import 'package:spatially/geom/base.dart';
  *
  * Throws a [StateError] if the geometry is degenerate.
  */
-interiorPointPoint(Geometry geom) {
+Coordinate interiorPointPoint(Geometry geom) {
   Coordinate centroid = geom.centroid.coordinate;
   Coordinate interiorPoint = null;
   double minDistance = double.INFINITY;

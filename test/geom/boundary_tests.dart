@@ -1,7 +1,7 @@
 library spatially.geom.boundary_tests;
 
 import 'package:spatially/geom/base.dart';
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 final GeometryFactory factory = new GeometryFactory();
 

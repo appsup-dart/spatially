@@ -1,6 +1,6 @@
 library spatially.operation.overlay.linestring_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/spatially.dart';
 import 'package:spatially/operation/overlay.dart';
 

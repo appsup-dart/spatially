@@ -90,5 +90,5 @@ bool _multivalentEndpointRule(int boundaryCount) => boundaryCount > 1;
  * being all the "unattached" ones.
  */
 final VertexInBoundaryRule MONOVALENT_ENDPOINT_BOUNDARY_RULE = _monovalentEndpointRule;
-_monovalentEndpointRule(int boundaryCount) => boundaryCount == 1;
+bool _monovalentEndpointRule(int boundaryCount) => boundaryCount == 1;
 

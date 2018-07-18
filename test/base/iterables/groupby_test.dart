@@ -1,6 +1,6 @@
 library spatially.base.iterables.groupby_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:quiver/iterables.dart';
 import 'package:spatially/base/iterables.dart';
 

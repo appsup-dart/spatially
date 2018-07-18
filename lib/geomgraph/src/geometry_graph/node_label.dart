@@ -16,7 +16,7 @@
 
 part of spatially.geomgraph.geometry_graph;
 
-class Node implements GraphNodeLabel<Node> {
+class Node implements GraphNodeLabel {
   final GeometryGraph graph;
   final Coordinate coordinate;
   final Tuple<Location,Location> locations;

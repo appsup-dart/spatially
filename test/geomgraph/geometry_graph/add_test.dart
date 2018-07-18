@@ -2,7 +2,7 @@ library spatially.geomgraph.geometry_graph.add_test;
 
 import 'package:collection/equality.dart';
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/spatially.dart';
 import 'package:spatially/base/tuple.dart';
 import 'package:spatially/geom/location.dart' as loc;

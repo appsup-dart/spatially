@@ -1,11 +1,11 @@
 library spatially.base.graph.graph_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 import 'package:spatially/base/graph.dart';
 
 
-class MockNodeLabel implements GraphNodeLabel<MockNodeLabel> {
+class MockNodeLabel implements GraphNodeLabel {
   int id;
 
   MockNodeLabel(int this.id);
@@ -17,7 +17,7 @@ class MockNodeLabel implements GraphNodeLabel<MockNodeLabel> {
   String toString() => "$id";
 }
 
-class MockEdgeLabel implements GraphEdgeLabel<MockEdgeLabel> {
+class MockEdgeLabel implements GraphEdgeLabel {
   int id1;
   int id2;
   bool isMerged = false;

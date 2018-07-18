@@ -39,6 +39,8 @@ import 'precision_model.dart';
 import 'intersection_matrix.dart';
 
 import 'dimension.dart' as dim;
+import '../algorithm/coordinate_arrays.dart';
+import '../operation/overlay.dart';
 
 part 'src/base/factory.dart';
 part 'src/base/point.dart';
@@ -625,8 +627,7 @@ abstract class Geometry implements Comparable<Geometry>{
    * equal to the minimum of the two dimensions.
    */
   Geometry intersection(Geometry geom) {
-    //TODO: Geometry.intersection
-    throw 'Geometry.intersection NotImplemented';
+    return overlayGeometries(this,geom, OVERLAY_INTERSECTION);
   }
 
   /**
@@ -724,7 +725,7 @@ abstract class Geometry implements Comparable<Geometry>{
     return _compareToSameType(g, comparator);
   }
 
-  int _compareToSameType(Geometry g, Comparator<List<Coordinate>> comparator);
+  int _compareToSameType(covariant Geometry g, Comparator<List<Coordinate>> comparator);
 
   /**
    * Tests whether this geometry is structurally and

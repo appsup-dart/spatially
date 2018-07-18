@@ -69,6 +69,7 @@ class Point extends Geometry {
     // a point is always normalized
   }
 
+  @override
   int _compareToSameType(Point other, Comparator<List<Coordinate>> comparator) {
     return comparator(_coords, other._coords);
   }

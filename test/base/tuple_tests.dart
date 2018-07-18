@@ -1,6 +1,6 @@
 library spatially.base.tuple_tests;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/base/tuple.dart';
 
 main() {
@@ -19,7 +19,7 @@ main() {
 
     test("should be able to map over the tuple", () {
       var t = new Tuple(1,2);
-      expect(t.map((i) => i + 1), new Tuple(2,3));
+      expect(t.map<int>((i) => i + 1), new Tuple(2,3));
     });
 
     test("should be able to test both elements of a tuple satisfy a predicate", () {
@@ -52,7 +52,7 @@ main() {
 
     test("zip should pair elements together", () {
       Iterable<int> iter1 = [1,2,3,4,5,6];
-      Iterable<int> iter2 = ["hello", "world", "how", "are", "you", "today"];
+      Iterable<String> iter2 = ["hello", "world", "how", "are", "you", "today"];
       expect(zip(iter1, iter2),
           [ new Tuple(1, "hello"),
             new Tuple(2, "world"),

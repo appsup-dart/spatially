@@ -2,7 +2,7 @@ library spatially.base.coordinate_test;
 
 import 'dart:math' as math;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/base/coordinate.dart';
 
 main() {

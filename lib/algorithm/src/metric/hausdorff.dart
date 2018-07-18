@@ -37,7 +37,10 @@ part of algorithm.metric;
  *     approximately parallel and equal in length.
  *  -- Testing similarity of [Geometry]s
  */
-const Metric discreteHausdorffMetric = _hausdorffDistance;
+const Metric<Geometry,Geometry> discreteHausdorffMetric = _hausdorffDistanceWithoutDensify;
+
+double _hausdorffDistanceWithoutDensify(Geometry g1, Geometry g2, [double densify = 1.0]) =>
+    _hausdorffDistance(g1,g2);
 
 double _hausdorffDistance(Geometry g1, Geometry g2, [double densify = 1.0]) {
   if (densify <= 0.0 || densify > 1.0) {

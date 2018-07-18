@@ -24,7 +24,7 @@ class _PointBuilder extends _OverlayBuilder {
   Geometry build() {
     List<Point> points = [];
     for (var node in graph.nodes) {
-      var ons = node.locations.map((location) => location.on);
+      var ons = node.locations.map<int>((location) => location.on);
       if (_inOverlay(ons)) {
         points.add(geomFactory.createPoint(node.coordinate));
       }

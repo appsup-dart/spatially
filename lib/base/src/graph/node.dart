@@ -17,13 +17,13 @@
 part of spatially.base.graph;
 
 class GraphNode<N extends GraphNodeLabel> {
-  final Graph<N,dynamic> graph;
-  final GraphNodeLabel<N> label;
+  final Graph<N,GraphEdgeLabel> graph;
+  final GraphNodeLabel label;
 
   Set<GraphEdge> _outgoingEdges;
   Set<GraphEdge> _incomingEdges;
 
-  GraphNode(Graph<N,dynamic> this.graph, GraphNodeLabel<N> this.label) {
+  GraphNode(Graph<N,GraphEdgeLabel> this.graph, GraphNodeLabel this.label) {
     _outgoingEdges = (graph.starAtNode ? new SplayTreeSet(_compareEdges) : new Set());
     _incomingEdges = (graph.starAtNode ? new SplayTreeSet(_compareEdges) : new Set());
   }

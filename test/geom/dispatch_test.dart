@@ -1,6 +1,6 @@
 library spatially.geom.dispatch_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:spatially/spatially.dart';
 
 main() {

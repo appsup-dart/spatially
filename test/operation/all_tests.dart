@@ -1,6 +1,6 @@
 library spatially.overlay.all_tests;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 import 'overlay/all_tests.dart' as overlay;
 

@@ -17,7 +17,6 @@
 library spatially.geomgraph.geometry_graph;
 
 import 'package:collection/collection.dart';
-import 'package:collection/equality.dart';
 import 'package:quiver/iterables.dart' show concat;
 
 import 'package:spatially/spatially.dart';
@@ -33,6 +32,7 @@ import 'package:spatially/geom/location.dart' as loc;
 
 import 'location.dart';
 import 'intersector.dart';
+import '../algorithm/coordinate_arrays.dart';
 
 part 'src/geometry_graph/edge_label.dart';
 part 'src/geometry_graph/node_label.dart';
@@ -68,10 +68,8 @@ class GeometryGraph {
    * Adds both geometries to the graph, then nodes and labels the graph.
    */
   void initialise() {
-    for (var i in [1,2]) {
-      var geom = geometries.project(i);
-      addGeometry(geom);
-    }
+    addGeometry(geometries.$1);
+    addGeometry(geometries.$2);
     nodeGraph();
     labelGraph();
   }
@@ -137,8 +135,8 @@ class GeometryGraph {
     //Test if there is an existing connection between the start and end nodes
     var connection = startNode.connection(endNode);
     if (connection != null) {
-      if (!_listEq.equals(connection.label._coordinates, coords)
-          && !_listEq.equals(connection.label._revCoordinates, coords)) {
+      if (!_listEq.equals((connection.label as Edge)._coordinates, coords)
+          && !_listEq.equals((connection.label as Edge)._revCoordinates, coords)) {
         //Add a dummy node and two edges representing the split coordinates.
         var len = coords.length;
         var mid = (len % 2 == 0)
@@ -153,10 +151,10 @@ class GeometryGraph {
             startNode, dummyNode,
             on: on, left: left, right: right);
         var lastCoords =
-            concat([(len % 2 == 0) ? [mid] : [], coords.skip(len ~/ 2)])
+            concat([(len % 2 == 0) ? [mid] : <Coordinate>[], coords.skip(len ~/ 2)])
             .toList(growable: false);
         _addCoordinateList(geomIdx,
-            concat([(len % 2 == 0 ? [mid] : []), coords.skip(coords.length ~/ 2)]).toList(growable: false),
+            concat([(len % 2 == 0 ? [mid] : <Coordinate>[]), coords.skip(coords.length ~/ 2)]).toList(growable: false),
             dummyNode, endNode,
             on: on, left: left, right: right);
         return;
